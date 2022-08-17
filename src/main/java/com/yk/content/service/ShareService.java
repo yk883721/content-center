@@ -1,5 +1,6 @@
 package com.yk.content.service;
 
+import com.yk.content.model.dto.ShareDto;
 import com.yk.content.model.entity.Share;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,6 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ShareService extends IService<Share> {
 
-    Share findById(Integer id);
+    ShareDto findById(Integer id);
 
 }

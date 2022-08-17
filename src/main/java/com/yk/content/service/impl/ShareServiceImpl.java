@@ -1,10 +1,12 @@
 package com.yk.content.service.impl;
 
+import com.yk.content.model.dto.ShareDto;
 import com.yk.content.model.dto.UserDto;
 import com.yk.content.model.entity.Share;
 import com.yk.content.mapper.ShareMapper;
 import com.yk.content.service.ShareService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,7 +29,7 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
     private RestTemplate restTemplate;
 
     @Override
-    public Share findById(Integer id) {
+    public ShareDto findById(Integer id) {
         Share share = shareMapper.selectById(id);
 
         // 发布人Id
@@ -36,6 +38,10 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
         String url = "http://localhost:8080/user/{userId}";
         UserDto userDto = restTemplate.getForObject(url, UserDto.class, userId);
 
-        return share;
+        ShareDto shareDto = new ShareDto();
+        BeanUtils.copyProperties(share, shareDto);
+        shareDto.setWxNickName(userDto.getWxNickname());
+
+        return shareDto;
     }
 }

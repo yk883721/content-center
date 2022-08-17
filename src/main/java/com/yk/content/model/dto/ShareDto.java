@@ -1,10 +1,7 @@
 package com.yk.content.model.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +17,6 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
-@Builder
 @ApiModel(value = "Share对象", description = "分享表")
 public class ShareDto {
 
@@ -69,7 +65,7 @@ public class ShareDto {
     @ApiModelProperty("审核不通过原因")
     private String reason;
 
+    @ApiModelProperty("微信昵称")
     private String wxNickName;
-
 
 }
