@@ -1,6 +1,8 @@
 server:
   port: 8010
 spring:
+  application:
+    name: content-center
   datasource: # 配置数据源类型
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -10,6 +12,10 @@ spring:
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
 
 mybatis-plus:
   configuration:
